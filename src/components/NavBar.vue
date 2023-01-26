@@ -5,7 +5,7 @@
       <ul class="nav-links">
        <li><router-link class="navbar-link" to="/">Home</router-link></li>
        <li><router-link class="navbar-link" to="/products">Products</router-link></li>
-       <li><router-link class="navbar-link" to="/cart">Cart</router-link></li>
+       <li><router-link class="navbar-link" to="/cart">My Cart</router-link></li>
        <li> <router-link class="navbar-link" to="/sign-up">Sign Up</router-link></li>
        <li><router-link class="navbar-link" to="/login">Login</router-link></li> 
        <li><button class="logout-btn" @click="logout">Logout</button></li>

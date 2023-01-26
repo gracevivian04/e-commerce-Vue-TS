@@ -1,8 +1,11 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import haveRoleGuard from './role-guard'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import SignUpView from '../views/SignUpView.vue'
 import ProductView from '../views/ProductView.vue'
+import CartView from '../views/CartView.vue'
+
 
 
 const routes: Array<RouteRecordRaw> = [
@@ -24,7 +27,14 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/products',
     name: 'products',
+    //beforeEnter: [haveRoleGuard],
     component: ProductView
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    //beforeEnter: [haveRoleGuard],
+    component: CartView
   },
   {
     path: '/about',
