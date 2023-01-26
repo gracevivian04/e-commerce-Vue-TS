@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import axios from 'axios'
+import fakeShopApi from '@/api/fakeShopApi';
 //import HomePage from './HomePage.vue'
 
 
@@ -29,7 +29,7 @@ export default defineComponent({
   methods: {
     async signUp() {
       //console.warn('signup', this.name, this.email, this.password)
-      let result = await axios.post("http://localhost:3000/user", {
+      let result = await fakeShopApi.post("/auth/login", {
         name: this.name,
         email: this.email,
         password: this.password
@@ -38,7 +38,7 @@ export default defineComponent({
       if(result.status == 201) {
         alert("sign-up successful");
         localStorage.setItem("user-info", JSON.stringify(result.data))
-        //this.$router.push({name: HomePage})
+        //this.$router.push({name: HomePage,})
       }
     }
   },
@@ -75,7 +75,7 @@ export default defineComponent({
 }
 .register button:hover {
   transition: 2ms;
-  background-color: #ffedff;
+  background-color: #fff;
   border: 2px solid  #ffd5be;
   color: #ff9776;
   border-radius: 5px;

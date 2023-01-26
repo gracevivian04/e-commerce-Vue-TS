@@ -6,6 +6,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import NavBar from './components/NavBar.vue';
+//import fakeShopApi from './api/fakeShopApi';
 
 export default defineComponent({
   name: "App",

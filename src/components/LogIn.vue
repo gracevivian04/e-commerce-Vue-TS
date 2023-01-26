@@ -12,8 +12,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import axios from 'axios';
-//import HomePage from './HomePage.vue';
+import fakeShopApi from '@/api/fakeShopApi';
+//import ProductPage from './ProductPage.vue';
 
 export default defineComponent({
   name: "LogIn",
@@ -25,12 +25,12 @@ export default defineComponent({
   },
   methods: {
     async login() {
-      let result = await axios.get(`http://localhost:3000/user?email=${this.email}&password=${this.password}`)
+      let result = await fakeShopApi.get('/auth/profile')
       
       if(result.status == 200 && result.data.length > 0) {
         alert("login successful");
-        localStorage.setItem("user-info", JSON.stringify(result.data[0]))
-        //this.$router.push({name: HomePage})
+        localStorage.setItem("user-info", JSON.stringify(result.data[0]));
+        //this.$router.push({name: ProductPage})
       }
       console.log(result);
     }
@@ -63,7 +63,7 @@ export default defineComponent({
 }
 .login button:hover {
   transition: 2ms;
-  background-color: #ffedff;
+  background-color: #fff;
   border: 2px solid  #ffd5be;
   color: #ff9776;
   border-radius: 5px;
