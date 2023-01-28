@@ -1,12 +1,13 @@
 <template>
-  <NavBar title="Online Shop" />
-  <router-view/>
+  <div>
+    <NavBar title="Online Shop" />
+    <router-view/>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import NavBar from './components/NavBar.vue';
-//import fakeShopApi from './api/fakeShopApi';
 
 export default defineComponent({
   name: "App",
@@ -22,8 +23,12 @@ export default defineComponent({
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #ff487e;
   padding: 0;
   margin: 0;
+}
+
+nav a.router-link-exact-active {
+  color: #fb6f44;
 }
 </style>
