@@ -4,14 +4,14 @@ import { RouteLocation } from "vue-router";
 const haveRoleGuard = (to: RouteLocation, from: RouteLocation, next: any) => {
   console.log(to, from, next);
 
-  const userRole = localStorage.getItem("userRole");
+  const userToken = localStorage.getItem("userToken");
 
-  if (userRole === "Admin") {
+  if (userToken) {
     // queremos navegar!
     next();
   } else {
     alert("Admin access only");
-    next({ name: "home" });
+    next({ name: "login" });
   }
 };
 

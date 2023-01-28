@@ -1,22 +1,21 @@
 <template>
   <nav>
     <div class="my-navbar">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
+        <path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
+      </svg>
       <h4 class="title">{{title}}</h4>
-      <ul class="nav-links">
-       <li><router-link class="navbar-link" to="/">Home</router-link></li>
-       <li><router-link class="navbar-link" to="/products">Products</router-link></li>
-       <li><router-link class="navbar-link" to="/cart">My Cart</router-link></li>
-       <li> <router-link class="navbar-link" to="/sign-up">Sign Up</router-link></li>
-       <li><router-link class="navbar-link" to="/login">Login</router-link></li> 
-       <li><button class="logout-btn" @click="logout">Logout</button></li>
-      </ul> 
     </div>
   </nav>
 </template>
 
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
+
+interface NavbarProps {
+  title: string,
+}
 
 export default defineComponent({
   name: 'NavBar',
@@ -26,70 +25,26 @@ export default defineComponent({
     required: true,
     }
   }, 
-  methods: {
-    logout() {
-      localStorage.clear();
-      this.$router.push({name: 'LogIn'})
-    }
-  }
 });
 </script>
 
 
-
 <style scoped>
-
-li {
-  list-style-type: none;
-}
 .my-navbar {
   width: 100%;
   height: 100px;
-  position:relative;
   top: 0;
   left: 0;
   right: 0;
-  display: inline;
-}
-
-.nav-links {
   display: flex;
   justify-content: space-between;
-  padding-right: 30px;
+  align-items: center;
+  background-color: #fee0d7;
 }
-
-.navbar-link {
-  text-decoration: none;
-  font-weight: bold;
-  color: #ff9776;
-}
-
-.navbar-link:hover {
-  cursor: pointer;
-}
-
 .title {
   font-size: larger;
   font-weight: bolder;
   color: #ff487e;
-}
-
-.logout-btn {
-  font-weight: bolder;
-  width: 125px;
-  border: 2px solid #ffedff;
-  border-radius: 5px;
-  background-color: #ffd5be;
-  color: #ff487e;
-  cursor: pointer;
-}
-
-.logout-btn:hover {
-  transition: 2ms;
-  background-color: #fff;
-  border: 2px solid  #ffd5be;
-  color: #ff9776;
-  border-radius: 5px;
 }
 
 </style>
