@@ -24,7 +24,7 @@ const actions: ActionTree<ProductStateInterface, IState> = {
   //action that calls API to access products that have specific word in their title 
   async fetchProductByTitle({commit}, productTitle: string) {
     commit('setIsLoading', true);
-    const { data } = await fakeShopApi.get<unknown, AxiosResponse<Product>>(`/products/${productTitle}`);
+    const { data } = await fakeShopApi.get<unknown, AxiosResponse<Product>>(`/products/?title=${productTitle}`);
     commit('setIsLoading', false);
     commit('setFilteredProducts', data);
   },

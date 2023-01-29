@@ -3,7 +3,7 @@ import { Token } from '@/models/token'
 
 //define user properties
 export interface IUserState {
-  token: Token | null;
+  token: string | null;
   user: User | null;
   isLoading: boolean;
 }

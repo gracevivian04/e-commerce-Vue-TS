@@ -1,19 +1,19 @@
 <template>
   <div class="login">
     <h1 class="title">Store Access</h1>
-    <form class="form" @submit.prevent="onSubmit">
+    <form class="form" @submit="getToken">
       <div class="mb-3">
         <label for="email" class="form-label">Email Address</label>
-        <input v-model.lazy="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+        <input v-model="email" type="email" class="form-control" id="email" required>
         <div id="emailHelp" class="form-text">Please use a valid email</div>
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input v-model.lazy="password" type="password" class="form-control" id="password" required>
+        <input v-model="password" type="password" class="form-control" id="password" required>
       </div>
       <button class="btn btn-primary" type="submit">Login</button>
     </form>
-    <div v-if="errorMsg" class="error-msg">{{ errorMsg }}</div>
+    <!--<div v-if="errorMsg" class="error-msg">{{ errorMsg }}</div>-->
   </div>
 </template>
 
@@ -24,7 +24,7 @@ import useUser from '@/composables/useUser';
 
 
 export default defineComponent({
-  setup() {
+  /*setup() {
     const { fetchToken } = useUser();
     const email = ref("");
     const password = ref("");
@@ -46,20 +46,21 @@ export default defineComponent({
       errorMsg,
       onSubmit,
     };
-  },
-  /*setup() {
+  },*/
+  setup() {
     const { fetchToken } = useUser();
     let email = ref("");
     let password = ref("");
     const getToken = () => {
+      console.log("getToken", {email: email.value, password: password.value});
       fetchToken({email: email.value, password: password.value});
-    }
+    };
     return {
       email, 
       password, 
       getToken,
-    }
-  }*/
+    };
+  },
 });
 </script>
 

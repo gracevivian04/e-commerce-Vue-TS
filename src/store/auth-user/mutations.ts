@@ -6,7 +6,8 @@ import router from '@/router/index';
 
 const mutations: MutationTree<IUserState> = {
   //mutation to add received token to state as parameter
-  setToken(state: IUserState, token: Token) {
+  setToken(state: IUserState, token: string) {
+    console.log("setToken", {state, token})
     state.token = token;
   },
   //mutation to add received user to state as parameter

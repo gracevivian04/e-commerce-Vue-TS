@@ -1,6 +1,6 @@
 <template>
-   <NavLinks />
   <div>
+    <NavLinks />
     <div class="welcome"><h1>Welcome back, {{ user.name }}!</h1></div>
     <div v-if="!isLoading" class="my-account">
       <CustomCard>

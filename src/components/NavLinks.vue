@@ -7,6 +7,9 @@
             <router-link to="/" @click="showProducts">Products</router-link>
           </li>
           <li>
+            <router-link :to="{name: 'login'}">Login</router-link>
+          </li>
+          <li>
             <router-link :to="{name: 'my-account'}">My Account</router-link>
           </li>
         </ul>

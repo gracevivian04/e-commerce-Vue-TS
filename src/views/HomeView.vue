@@ -21,7 +21,7 @@ import PageSelector from '@/components/PageSelector.vue';
 import ProductItem from '@/components/ProductItem.vue';
 import useProducts from '@/composables/useProducts';
 import { useRouter } from 'vue-router';
-import { Product } from '@/models/product';
+//import { Product } from '@/models/product';
 import router from '@/router';
 
 
@@ -36,13 +36,12 @@ export default defineComponent({
 methods: {
   productInfo(id: number) {
     router.push({name: 'product', params: { id }});
-  }
+  },
 },
 setup() {
-  const { products, filteredProducts, isLoading, productsLength, fetchProducts, fetchProductByTitle, fetchProductByPagination } = useProducts();
+  const { products, filteredProducts, isLoading, productsLength, fetchProducts, fetchProductByPagination } = useProducts();
   const router = useRouter();
   fetchProducts();
-  let inputFilter = ref('');
 
   const perPage = 20;
   const showProducts = () => {
@@ -50,19 +49,6 @@ setup() {
   }
   fetchProductByPagination({offset: 0, limit: perPage});
 
-  const validateInput = () => {
-    const filter = inputFilter.value.toLowerCase();
-    for (let i = 0; i < productsLength.value; i++) {
-      if (products.value[i].title.toLowerCase().includes(filter)) {
-        const titleArray =  products.value[i].title.split(" ");
-        for (let j = 0; j < titleArray.length; j++) {
-          if (titleArray[j].toLowerCase().includes(filter)) {
-            fetchProductByTitle(titleArray[j]);
-          }
-        }
-      }
-    }
-  }
   let offset = 0;
   const goBack = () => {
     if (offset == 0) {
@@ -80,16 +66,20 @@ setup() {
       fetchProductByPagination({offset: offset, limit: perPage});  
     }
   }
+  const title = ref("");
+  const searchTitle = (newTitle: string) => {
+    title.value = newTitle;
+  };
+
   return {
     products,
     filteredProducts,
     isLoading,
     //productInfo: (product: Product) => router.push({name: 'product', params: {id: product.id}}),
-    inputFilter,
-    validateInput,
     showProducts,
     goBack,
     goForward, 
+    searchTitle,
   }
 }
 });
