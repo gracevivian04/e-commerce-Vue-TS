@@ -1,8 +1,13 @@
 # online-shop
 
-## Project setup
+## Installation
 ```
-npm install
+$ git clone https://github.com/gracevivian04/e-commerce-Vue-TS.git
+$ cd online-shop
+$ npm install
+
+
+## Project setup
 ```
 
 ### Compiles and hot-reloads for development
@@ -20,5 +25,8 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Login with =>
+```
+email: john@mail.com
+password: changeme
+```
