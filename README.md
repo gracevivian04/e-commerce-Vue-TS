@@ -5,7 +5,7 @@
 $ git clone https://github.com/gracevivian04/e-commerce-Vue-TS.git
 $ cd online-shop
 $ npm install
-
+```
 
 ## Project setup
 ```
