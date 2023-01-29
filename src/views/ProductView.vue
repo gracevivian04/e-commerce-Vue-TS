@@ -1,105 +1,110 @@
 <!--View shows NavLink components and CustomCard to show selected product detail-->
-
 <template>
-  <div class="product">
-    <NavLinks />
-    <h1>Available Products</h1>
-    <form class="form">
-      <input class="search-bar" type="search" placeholder="Search for an item..." aria-label="search" />
-      <button class="btn-success" type="submit">Search</button>
-    </form>
-    <div v-if="!isLoading" class="product-view">
-      <CustomCard>
-        <template v-slot:image>
-          <div v-if="!activePic" class="profile">
-            <div class="pictures">
-              <img :src="product.images[0]" class="card-img-top" alt="">
-            </div>
-            <div class="pictures">
-              <div v-for="(image, index) in product.images" :key="index">
-                <img :src=image class="card-img-top" @click="changeActivePic(index)">
-              </div>
-            </div>
-          </div>
-        </template>
-        <template v-slot:header>
-          <h2 class="card-title">{{ product.id }}.{{ product.title }}</h2>
-        </template>
-        <template v-slot:body>
-          <p class="card-text">{{ product.description }}</p>
-        </template>
-        <template v-slot:footer>
-          <h2>Price: €{{ product.price }}</h2>
-        </template>
-      </CustomCard>
+  <NavLinks />
+  <div>
+    <div v-if="!isLoading" class="product">
+    <div class="images">
+      <div v-if="!currentPic" class="profile">
+        <div class="current-image">
+          <img :src="product.images[0]" alt="" class="card-img-top" />
+        </div>
+      </div>
+      <div v-else>
+        <div class="current-image">
+          <img :src="currentPic" alt="" class="card-img-top" />
+        </div>
+      </div>
+      <div class="other-images">
+        <div v-for="(image, index) in product.images" :key="index">
+          <img :src="image" class="image" @click="changeCurrentPic(index)" />
+        </div>
+      </div>
     </div>
-    <div v-else>
-      Loading...
+    <div class="info">
+      <h2>{{ product.title }}</h2>
+      <p>{{ product.description }}</p>
+      <h5>€{{ product.price }}</h5>
     </div>
+    </div>
+    <div v-else>Loading...</div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onBeforeMount, onMounted } from 'vue';
+import { defineComponent, ref } from 'vue';
 import useProducts from '@/composables/useProducts';
 import NavLinks from '@/components/NavLinks.vue';
-import CustomCard from '@/components/CustomCard.vue';
 
 
 export default defineComponent({
     name: "ProductView",
     components: {
-      NavLinks,
-      CustomCard,
-    },
+    NavLinks
+},
     props: {
       id: {
         type: Number,
         required: true,
-      }
+      },
     },
     setup(props) {
        const {product, fetchProductById, isLoading} = useProducts();
        fetchProductById(props.id);
-       let activePic = ref();
-       const changeActivePic = (index: number) => {
-        activePic.value = product.value.images[index];
-       }
+
+       let currentPic = ref();
+       const changeCurrentPic = (index: number) => {
+        currentPic.value = product.value.images[index];
+       };
 
        return {
         product, 
         isLoading,
-        activePic, 
-        changeActivePic
-       }
-    }
+        currentPic, 
+        changeCurrentPic,
+       };
+    },
 });
 </script>
 
 <style scoped>
-.product-view {
-  margin-top: -40px;
-  margin-bottom: 50px;
+.product {
+  margin: auto;
   display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 600px;
+}
+
+.images {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.image {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
+
+.current-image {
+  width: 100%;
+}
+
+.current-image img {
+  max-width: 100%;
+}
+
+.other-images {
+  display: flex;
+  width: 100%;
   justify-content: center;
 }
 
-.pictures {
-  width: 800px;
+.info {
   display: flex;
-}
-
-.pictures img {
-  width: 150px;
-  margin: 5px;
-  border: 2px solid  #ffd5be;
-  border-radius: 5px;
-}
-.search-bar {
-  border: 2px solid #ffedff;
-}
-
-.search-bar input[type="search"]:focus {
-  border: 2px solid  #ffd5be;
+  flex-direction: column;
+  text-align: left;
+  flex: 1;
 }
 </style>

@@ -21,11 +21,11 @@ const actions: ActionTree<IUserState, IState > = {
     }
   },
   //action that calls API to access authorized user 
-  async fetchAuthUser({commit}) {
+  async fetchuser({commit}) {
     commit('setIsLoading', true);
     const { data } = await fakeShopApi.get<unknown, AxiosResponse<User>>('/auth/profile');
     commit('setIsLoading', false);
-    commit('setAuthUser', data);
+    commit('setuser', data);
   },
   //action that uses mutations to delete token from store + localStorage then redirect to login 
   deleteToken({commit}) {

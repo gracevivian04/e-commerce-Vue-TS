@@ -7,7 +7,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-     //beforeEnter: [haveRoleGuard],
+    //beforeEnter: [haveRoleGuard],
     component: HomeView
   },
   {
@@ -19,7 +19,6 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: 'login',
-    //beforeEnter: [haveRoleGuard],
     component: () => import(/* webpackChunkName: "login" */ '../views/LoginView.vue')
   },
   {

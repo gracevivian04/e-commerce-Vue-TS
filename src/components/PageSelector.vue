@@ -19,10 +19,19 @@ export default defineComponent({
 })
 </script>
 
-<style>
+<style scoped>
 
 a {
   width: 150px;
+  border:#ff487e;
+  background: #ff9776;
+  color: #fff;
 }
+
+a:hover {
+  background: #ff487e;
+  color: #fff;
+}
+
 
 </style>

@@ -8,16 +8,16 @@ const useProducts = () => {
   return {
     //GETTERS
     products: computed(() => store.getters['products/getProducts']),
-    filteredProducts: computed(() => store.getters['products/getProductsPagination']),
+    filteredProducts: computed(() => store.getters['products/getProductsByPagination']),
     isLoading: computed(() => store.getters['products/getIsLoading']),
     product: computed(() => store.getters['products/getProduct']),
     productsLength: computed(() => store.getters['products/getProductsLength']),
 
     //ACTIONS
     fetchProducts: () => store.dispatch('products/fetchProducts'),
-    fetchProductById: (productId: number) => store.dispatch('product/fetchProductById', productId),
-    fetchProductByTitle: (productTitle: string) => store.dispatch('product/fetchProductByTitle', productTitle),
-    fetchProductByPagination: (pagination: Pagination) => store.dispatch('product/fetchProductByPagination', pagination)
+    fetchProductById: (productId: number) => store.dispatch('products/fetchProductById', productId),
+    fetchProductByTitle: (productTitle: string) => store.dispatch('products/fetchProductByTitle', productTitle),
+    fetchProductByPagination: (pagination: Pagination) => store.dispatch('products/fetchProductByPagination', pagination)
   }
 };
 

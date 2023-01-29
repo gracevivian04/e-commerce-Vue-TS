@@ -29,6 +29,6 @@ export default defineComponent({
 }
 
 nav a.router-link-exact-active {
-  color: #fb6f44;
+  color: #fff;
 }
 </style>
